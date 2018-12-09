@@ -52,13 +52,13 @@ def handle_message(event):
 
     if re.match('[0-9]{4}[<>][0-9]',usespeak):
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
-        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+''))
         return 0
 
 
-    elif re.match('刪除[0-9]{4}',usespeak): 
+    elif re.match('[0-9]{4}',usespeak): 
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
-        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak+''))
         return 0
         
         
@@ -71,10 +71,10 @@ def handle_message(event):
         soup = BeautifulSoup(list_req.content, "html.parser")
 
         getstock= soup.findAll('b')[1].text
-        line_bot_api.push_message(uid, TextSendMessage(usespeak + '目前的價格是' + getstock))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak + '' + getstock))
         return 0
     
-    elif re.match('我的股票',usespeak):
+    elif re.match('',usespeak):
         
         get=mongodb.show_user_stock_fountion()
         msg=''
@@ -85,161 +85,161 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(msg))
             return 0
         else:
-            line_bot_api.push_message(uid, TextSendMessage('沒有資料'))
+            line_bot_api.push_message(uid, TextSendMessage(''))
             return 0
         
 
-    elif re.match('籌碼面分析',usespeak): 
+    elif re.match('',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
       
         line_bot_api.push_message(uid, TextSendMessage(Institutional_Investors.stockII(usespeak)))
         return 0
     
-    elif re.match('KD圖',usespeak): 
+    elif re.match('K',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
        
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_KD(usespeak)))
         return 0
     
-    elif re.match('MA圖',usespeak): 
+    elif re.match('',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
        
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_MA(usespeak)))
         return 0
     
-    elif re.match('MACD圖',usespeak): 
+    elif re.match('MACD',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
         
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_MACD(usespeak)))
         return 0
     
-    elif re.match('OBV圖',usespeak): 
+    elif re.match('OBV',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
         
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_OBV(usespeak)))
         return 0
     
-    elif re.match('威廉圖',usespeak): 
+    elif re.match('',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
         
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_William(usespeak)))
         return 0
     
-    elif re.match('ATR圖',usespeak): 
+    elif re.match('ATR',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
        
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_ATR(usespeak)))
         return 0
     
-    elif re.match('ADX圖',usespeak): 
+    elif re.match('ADX',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
      
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_ADX(usespeak)))
         return 0
     
-    elif re.match('RSI圖',usespeak): 
+    elif re.match('RSI',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
     
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_RSI(usespeak)))
         return 0
     
-    elif re.match('MFI圖',usespeak): 
+    elif re.match('MFI',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
      
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_MFI(usespeak)))
         return 0
     
-    elif re.match('ROC圖',usespeak): 
+    elif re.match('ROC',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
+        line_bot_api.push_message(uid, TextSendMessage(''))
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_ROC(usespeak)))
         return 0
-    elif re.match('毛利率大於90％',usespeak): 
+    elif re.match('90％',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
-        line_bot_api.push_message(uid,TextSendMessage('毛利率大於90％的股票：\n'+Fundamental_Analysis.gpm()))
+        line_bot_api.push_message(uid, TextSendMessage(''))
+        line_bot_api.push_message(uid,TextSendMessage('：\n'+Fundamental_Analysis.gpm()))
         return 0
     
-    elif re.match('每股淨值大於100',usespeak): 
+    elif re.match('',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
-        line_bot_api.push_message(uid,TextSendMessage('每股淨值大於100的股票：\n'+Fundamental_Analysis.pbr()))
+        line_bot_api.push_message(uid, TextSendMessage(''))
+        line_bot_api.push_message(uid,TextSendMessage('：\n'+Fundamental_Analysis.pbr()))
         return 0
     
-    elif re.match('每股盈餘大於5',usespeak): 
+    elif re.match('5',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
-        line_bot_api.push_message(uid, TextSendMessage('稍等一下, 雲端運算中...'))
-        line_bot_api.push_message(uid,TextSendMessage('每股盈餘大於5的股票：\n'+Fundamental_Analysis.eps()))
+        line_bot_api.push_message(uid, TextSendMessage(''))
+        line_bot_api.push_message(uid,TextSendMessage('：\n'+Fundamental_Analysis.eps()))
         return 0
-    elif re.match('技術面分析',usespeak):
+    elif re.match(',usespeak):
         message = TemplateSendMessage(
-            alt_text='技術面分析（Technical Analysis）',
+            alt_text='（Technical Analysis）',
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
                         thumbnail_image_url='https://i.imgur.com/7FwK6MA.png',
-                        title='技術面分析',
+                        title='',
                         text='Technical Analysis',
                         actions=[
                             MessageTemplateAction(
-                                label='ROC圖',
-                                text='ROC圖'
+                                label='ROC',
+                                text='ROC'
                             ),
                             MessageTemplateAction(
-                                label='MA圖',
-                                text='MA圖'
+                                label='MA',
+                                text='MA'
                             ),
                             MessageTemplateAction(
-                                label='MACD圖',
-                                text='MACD圖'
+                                label='MACD',
+                                text='MACD'
                             )
                         ]
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://imgur.com/9BlDjoF.png',
-                        title='技術面分析',
+                        title='',
                         text='Technical Analysis',
                         actions=[
                             MessageTemplateAction(
-                                label='OBV圖',
-                                text='OBV圖'
+                                label='OBV',
+                                text='OBV'
                             ),
                             MessageTemplateAction(
-                                label='威廉圖',
-                                text='威廉圖'
+                                label='',
+                                text=''
                             ),
                             MessageTemplateAction(
-                                label='ATR圖',
-                                text='ATR圖'
+                                label='ATR',
+                                text='ATR'
                             )
                         ]
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://imgur.com/OkpeEZ7.png',
-                        title='技術面分析',
+                        title='',
                         text='Technical Analysis',
                         actions=[
                             MessageTemplateAction(
-                                label='ADX圖',
-                                text='ADX圖'
+                                label='ADX',
+                                text='ADX'
                             ),
                             MessageTemplateAction(
-                                label='RSI圖',
-                                text='RSI圖'
+                                label='RSI',
+                                text='RSI'
                             ),
                             MessageTemplateAction(
-                                label='MFI圖',
-                                text='MFI圖'
+                                label='MFI',
+                                text='MFI'
                             )
                         ]
                     )
@@ -248,24 +248,24 @@ def handle_message(event):
         )
         line_bot_api.push_message(uid, message)
         return 0
-    elif re.match('基本面分析',usespeak): 
+    elif re.match('',usespeak): 
         buttons_template = TemplateSendMessage(
-            alt_text='基本面分析',
+            alt_text='',
             template=ButtonsTemplate(
-                title='基本面分析（Fundamental Analysis）',
-                text='請選擇',
+                title='（Fundamental Analysis）',
+                text='',
                 actions=[
                     MessageTemplateAction(
-                        label='毛利率大於90％',
-                        text='毛利率大於90％'
+                        label='90％',
+                        text='90％'
                     ),
                     MessageTemplateAction(
-                        label='每股淨值大於100',
-                        text='每股淨值大於100'
+                        label='100',
+                        text='100'
                     ),
                     MessageTemplateAction(
-                        label='每股盈餘大於5',
-                        text='每股盈餘大於5'
+                        label='',
+                        text='5'
                     ),
                     
                 ]
