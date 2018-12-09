@@ -164,7 +164,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(''))
         line_bot_api.push_message(uid, TextSendMessage(Technical_Analysis.stock_ROC(usespeak)))
         return 0
-    elif re.match('90％',usespeak): 
+    elif re.match('90',usespeak): 
         usespeak=mongodb.cache_temporary_stock(uid)
         line_bot_api.push_message(uid, TextSendMessage(''))
         line_bot_api.push_message(uid,TextSendMessage('：\n'+Fundamental_Analysis.gpm()))
