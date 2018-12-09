@@ -22,8 +22,6 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('TBZCum8z1Mn+BN49uxzu4JmchnYzwrPptPMR9KKoZGqaJ/26Q6ltvkB9RYdAEuZrJHO8s1pcepjTgkxpRfjR2HTbwnaoDw4wkLLtdoMt7CvCWbAt86KVGEWJH/opS/dADbEPita9DfsfwVK1RRyayAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('24eb4648d2e8bff6711f67fae19d76c8')
-
-# 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
